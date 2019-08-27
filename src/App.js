@@ -13,7 +13,7 @@ function App() {
       .catch(err => console.log(err))
   }
 
-  useEffect(fetchArticles)
+  useEffect(fetchArticles, [])
 
   return (
     <div className="App">
