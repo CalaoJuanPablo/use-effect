@@ -19,10 +19,20 @@ const useArticlesList = query => {
 
 function App() {
   const [query, setQuery] = useState('')
+  const [width, setWidth] = useState(window.innerWidth)
+
   const articles = useArticlesList(query)
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+  })
 
   return (
     <div className="App">
+      <h1>
+        Width: {width}
+      </h1>
       <form onSubmit={e => {
         e.preventDefault()
       }}>
