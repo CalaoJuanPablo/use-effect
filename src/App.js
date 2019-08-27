@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-function App() {
-  const [query, setQuery] = useState('')
+const useArticlesList = query => {
   const [articles, setArticles] = useState([])
-
+  
   const fetchArticles = () => {
     const fetchUrl = `https://hn.algolia.com/api/v1/search?query=${query}`
     fetch(fetchUrl)
@@ -14,6 +13,13 @@ function App() {
   }
 
   useEffect(fetchArticles, [query])
+
+  return articles
+}
+
+function App() {
+  const [query, setQuery] = useState('')
+  const articles = useArticlesList(query)
 
   return (
     <div className="App">
