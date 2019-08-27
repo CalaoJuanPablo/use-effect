@@ -17,12 +17,9 @@ const useArticlesList = query => {
   return articles
 }
 
-function App() {
-  const [query, setQuery] = useState('')
+const useWidth = () => {
   const [width, setWidth] = useState(window.innerWidth)
-
-  const articles = useArticlesList(query)
-
+  
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth)
     window.addEventListener('resize', handleResize)
@@ -30,6 +27,15 @@ function App() {
       window.removeEventListener('resize', handleResize)
     }
   })
+
+  return width
+}
+
+function App() {
+  const [query, setQuery] = useState('')
+
+  const articles = useArticlesList(query)
+  const width = useWidth()
 
   return (
     <div className="App">
