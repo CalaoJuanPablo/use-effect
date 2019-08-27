@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import './App.css';
 
-const handleSubmit = query => {
-  console.log(query)
-}
-
 function App() {
   const [query, setQuery] = useState('')
+  
+  const handleSubmit = query => {
+    const fetchUrl = `https://hn.algolia.com/api/v1/search?query=${query}`
+    fetch(fetchUrl)
+      .then(res => res.json())
+      .then(data => console.log(data.hits))
+      .catch(err => console.log(err))
+  }
+
   return (
     <div className="App">
       <form onSubmit={e => {
