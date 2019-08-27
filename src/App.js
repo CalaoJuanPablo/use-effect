@@ -5,7 +5,8 @@ function App() {
   const [query, setQuery] = useState('')
   const [articles, setArticles] = useState([])
 
-  const handleSubmit = query => {
+  const handleInputChange = inputValue => {
+    setQuery(inputValue)
     const fetchUrl = `https://hn.algolia.com/api/v1/search?query=${query}`
     fetch(fetchUrl)
       .then(res => res.json())
@@ -17,13 +18,12 @@ function App() {
     <div className="App">
       <form onSubmit={e => {
         e.preventDefault()
-        handleSubmit(query)
       }}>
         <input
           type="text"
           placeholder="'react'"
           value={query}
-          onChange={e => {setQuery(e.target.value)}} />
+          onChange={e => {handleInputChange(e.target.value)}} />
         <input type="submit" value="Search" />
       </form>
       <ul>
