@@ -1,3 +1,6 @@
+# Understanding useEffect
+This is a simple example to understand `useEffect` hook.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
